@@ -1,2 +1,10 @@
-server:
-  port: 8888
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: 'fel1pe@xd3'
+    password: '@i!1Az23m'
+    platform: org.hibernate.dialect.H2Dialect
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 50

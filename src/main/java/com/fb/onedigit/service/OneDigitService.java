@@ -1,22 +1,22 @@
 package com.fb.onedigit.service;
 
+import com.fb.onedigit.models.dtos.OneDigitDTO;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 @Service
 public class OneDigitService {
 
-    public Integer repeatNumbers(String numbers, Integer exp) {
-        return this.findOneDigit(numbers.repeat(exp));
+    public Integer repeatNumbers(OneDigitDTO oneDigitDTO) {
+        return this.findOneDigit(oneDigitDTO.getNumber().repeat(oneDigitDTO.getExp()));
     }
 
     public Integer findOneDigit(String numbers) {
         var digit = Stream.of(numbers.split("")).
-                mapToInt(Integer::parseInt)
-                .sum();
-        if(digit > 9) {
+            mapToInt(Integer::parseInt)
+            .sum();
+        if (digit > 9) {
             return this.findOneDigit(String.valueOf(digit));
         }
         return digit;

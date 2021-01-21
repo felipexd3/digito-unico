@@ -1,30 +1,27 @@
 package com.fb.onedigit.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 
 @Entity
-@Builder
-@Data
+@SuperBuilder
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class OneDigit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
+public class OneDigit extends BaseEntity<OneDigit> {
+    @Column(nullable = false)
     private String number;
-    @Max(100000)
+    @Column(nullable = false)
     private Integer exp;
     private Integer digit;
+    @ManyToOne
+    private User user;
+
+    @Override
+    public void setUpdatableFields(OneDigit entity) {
+    }
 }
