@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
@@ -22,6 +21,11 @@ public class OneDigitController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> findOneDigit(@Valid @RequestBody OneDigitDTO oneDigitDTO) {
-        return new ResponseEntity<>(this.oneDigitService.repeatNumbers(oneDigitDTO), HttpStatus.OK);
+        return new ResponseEntity<>(this.oneDigitService.processNumber(oneDigitDTO), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "{userUid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OneDigitDTO>> findAllByUser(@PathVariable("userUid")UUID userUid) {
+        return new ResponseEntity(this.oneDigitService.findAllByUser(userUid), HttpStatus.OK);
     }
 }

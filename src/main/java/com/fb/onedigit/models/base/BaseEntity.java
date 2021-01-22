@@ -1,8 +1,9 @@
-package com.fb.onedigit.models;
+package com.fb.onedigit.models.base;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public abstract class BaseEntity<T> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, updatable = false)
+    @Type(type="uuid-char")
     private UUID uid;
     @CreationTimestamp
     @Column(updatable = false)

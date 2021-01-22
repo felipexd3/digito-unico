@@ -1,4 +1,4 @@
-package com.fb.onedigit.repository;
+package com.fb.onedigit.repository.base;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

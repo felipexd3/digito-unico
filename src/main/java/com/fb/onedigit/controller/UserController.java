@@ -1,6 +1,5 @@
 package com.fb.onedigit.controller;
 
-import com.fb.onedigit.models.User;
 import com.fb.onedigit.models.builders.UserDTOBuilder;
 import com.fb.onedigit.models.dtos.UserDTO;
 import com.fb.onedigit.service.UserService;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.KeyPairGenerator;
 import java.util.UUID;
 
 @RestController
@@ -43,7 +41,7 @@ public class UserController {
     }
 
 
-    @DeleteMapping(value = "{uid}")
+    @DeleteMapping(value = "{uid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity remove(@PathVariable("uid") UUID uid) {
         this.userService.remove(uid);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

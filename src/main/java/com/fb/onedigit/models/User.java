@@ -1,5 +1,6 @@
 package com.fb.onedigit.models;
 
+import com.fb.onedigit.models.base.BaseEntity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
