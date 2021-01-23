@@ -20,12 +20,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping(value = "{uid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> findByUid(@PathVariable("uid") UUID uid) {
-        return this.userService.findByUid(uid)
-            .map(UserDTOBuilder::fromEntity)
-            .map(ResponseEntity::ok)
-            .orElseGet(() ->
-                ResponseEntity.noContent().build());
+    public ResponseEntity<UserDTO> findByUid(@PathVariable("uid") UUID uid, @RequestHeader("public-key") String publicKey) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.userService.cryptUser(uid, publicKey));
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)

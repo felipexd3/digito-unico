@@ -19,12 +19,12 @@ import java.util.UUID;
 public class OneDigitController {
     private final OneDigitService oneDigitService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> findOneDigit(@Valid @RequestBody OneDigitDTO oneDigitDTO) {
-        return new ResponseEntity<>(this.oneDigitService.processNumber(oneDigitDTO), HttpStatus.OK);
+        return new ResponseEntity<>(this.oneDigitService.processNumber(oneDigitDTO), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "{userUid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "user/{userUid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<OneDigitDTO>> findAllByUser(@PathVariable("userUid")UUID userUid) {
         return new ResponseEntity(this.oneDigitService.findAllByUser(userUid), HttpStatus.OK);
     }

@@ -20,6 +20,7 @@ public class OneDigit extends BaseEntity<OneDigit> {
     private Integer exp;
     private Integer digit;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Override
