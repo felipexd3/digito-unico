@@ -5,25 +5,32 @@ import com.fb.onedigit.messages.Messages;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.security.InvalidKeyException;
 import java.security.KeyFactory;
-import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
-import java.security.spec.InvalidKeySpecException;
+import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
 
 @Component
 public class RSAUtil {
+    private static final int LENGTH = 2048;
+
     public static PublicKey decodePublicKey(String publicKey) {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            return keyFactory.generatePublic(new X509EncodedKeySpec(Base64.decodeBase64(publicKey)));
+            var publicKeyDecoded = (RSAPublicKey) keyFactory.generatePublic(new X509EncodedKeySpec(Base64.decodeBase64(publicKey)));
+            validatedRSAKey(publicKeyDecoded);
+            return publicKeyDecoded;
+        } catch (ApplicationException e) {
+            throw new ApplicationException(Messages.INVALID_PUBLIC_KEY);
         } catch (Exception e) {
             throw new ApplicationException(Messages.DECODE_FAILED);
+        }
+    }
+
+    private static void validatedRSAKey(RSAPublicKey publicKeyDecoded) {
+        if(publicKeyDecoded.getModulus().bitLength() < LENGTH) {
+            throw new ApplicationException(Messages.INVALID_PUBLIC_KEY);
         }
     }
 

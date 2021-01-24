@@ -27,8 +27,8 @@ public class HandlerException extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ApplicationException.class)
     protected ResponseEntity<OneDigitException> handleApplicationException(ApplicationException ex) {
         var messages = this.deserializedMessage(ex.getMessage());
-        var status = Objects.nonNull(ex.getHttpStatus()) ? ex.getHttpStatus() : HttpStatus.BAD_REQUEST;
-        return ResponseEntity.status(status).body(new OneDigitException(messages.get(0), messages.get(1), messages.get(2), ex));
+        var status = Objects.nonNull(ex.getHttpStatus()) ? ex.getHttpStatus() : HttpStatus.UNPROCESSABLE_ENTITY;
+        return ResponseEntity.status(status).body(new OneDigitException(messages.get(0), messages.get(1), messages.get(2)));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class HandlerException extends ResponseEntityExceptionHandler {
                 .map(FieldError::getField)
                 .collect(Collectors.toList());
         var messages = deserializedMessage(Messages.MALFORMED_JSON_REQUEST);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new OneDigitException(messages.get(0), messages.get(1), messages.get(2) + " " + fields, ex));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new OneDigitException(messages.get(0), messages.get(1), messages.get(2) + " " + fields));
     }
 
     private List<String> deserializedMessage(String message) {
