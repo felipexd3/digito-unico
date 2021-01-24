@@ -4,6 +4,9 @@
 >e conhecimentos adquiridos no dia a dia, buscando garantir a qualidade do código, seguindo
 >um padrão de escrita.
 
+A aplicação também pode ser testada em ambiente de produção através do link:
+https://quiet-basin-28996.herokuapp.com
+
 ## 📝 Tecnologias utilizadas
 * Spring boot
 * JPA/Hibernate
