@@ -30,18 +30,7 @@ public class SwaggerConfig {
             .paths(PathSelectors.any())
             .build()
             .useDefaultResponseMessages(false)
-            .globalResponseMessage(RequestMethod.GET, responseMessageForGET())
             .apiInfo(apiInfo());
-    }
-
-    private List<ResponseMessage> responseMessageForGET() {
-        return new ArrayList<>() {{
-            add(new ResponseMessageBuilder()
-                .code(500)
-                .message("500 message")
-                .responseModel(new ModelRef("Error"))
-                .build());
-        }};
     }
 
     private ApiInfo apiInfo() {

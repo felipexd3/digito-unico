@@ -5,6 +5,7 @@ import com.fb.onedigit.messages.Messages;
 import com.fb.onedigit.models.base.BaseEntity;
 import com.fb.onedigit.repository.base.BaseCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,7 +32,7 @@ public abstract class BaseCrudService<T extends BaseEntity<T>, K, R extends Base
         findEntityByProperty(entity).ifPresent(
             managedEntity -> {
                 throw new ApplicationException(
-                    String.format(Messages.ENTITY_ALREADY_EXISTS, getEntityName())
+                    String.format(Messages.ENTITY_ALREADY_EXISTS, getEntityName()), HttpStatus.CONFLICT
                 );
             }
         );

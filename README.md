@@ -7,6 +7,10 @@
 A aplicação também pode ser testada em ambiente de produção através do link:
 https://quiet-basin-28996.herokuapp.com
 
+A documentação do api pode ser acessada através do link:
+
+https://quiet-basin-28996.herokuapp.com/api/v1/swagger-ui.html#/user-controller
+
 ## 📝 Tecnologias utilizadas
 * Spring boot
 * JPA/Hibernate
