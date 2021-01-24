@@ -9,6 +9,7 @@
 * JPA/Hibernate
 * Junit/Mockit para testes unitários
 * Swagger para documentação da api
+* Gitlab CI
 
 
 

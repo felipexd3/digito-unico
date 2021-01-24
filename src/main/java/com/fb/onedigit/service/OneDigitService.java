@@ -34,10 +34,6 @@ public class OneDigitService extends BaseCrudService<OneDigit, Long, OneDigitRep
 
     public Integer processNumber(OneDigitDTO oneDigitDTO) {
         var number = oneDigitDTO.getNumber().repeat(oneDigitDTO.getExp());
-
-//        if(cacheUtil.getCache().containsKey(number)) {
-//            return cacheUtil.getCache().get(number);
-//        }
         var digit = cacheUtil.getCache().containsKey(number) ? cacheUtil.getCache().get(number) : this.findOneDigit(number);
         var user = Objects.nonNull(oneDigitDTO.getUserUid()) ?
             this.userService.findByUid(oneDigitDTO.getUserUid())
