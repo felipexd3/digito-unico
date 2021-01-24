@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "9e0fadd2-dd9e-47ef-88c1-f3ad19f5a3f9",
+		"name": "digito-unico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Procurar digito único",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Calcular digito único\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\": \"12345\",\r\n    \"exp\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/one-digit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"one-digit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Cadastrar usuário\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Felipe Batista\",\r\n    \"email\": \"fbfelipe91@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Buscar usuario\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "public-key",
+						"value": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj/OQrpTeyC3xKisZ2u3OuHOgUveiNe7lvEDic856wobP1vsNuCKStyNunwZX+HVbTlpEiOx0dMwY1L0vrDoSUtFz12MK/WF5qijG9RoDS7nNi+4aXwh5ihWHMeNHEM8vnKRHEib+omhsE7DryISH8IGZJYc5l15ppNoHnOw4Wqbb1t1mjZ33DTdG1z0pEf8nX+eD1wjOs8TzRySawAHgRKx/zHSoR6DD8b0LsaoU2SFgHGN2DwgWgSE+/sDarBvMe9/kxv5Ev28GBRIk8OmyE6wIVzshu3wRRXfJl7LH5009TGkrDlAEUjrDkxiR6jjyn5c3zvoZaqJqNG20DdvzsQIDAQAB",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8888/api/v1/users/{{userUid}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"{{userUid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Atualizar usuário\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Felipe Batista Ferreira Monteiro\",\r\n    \"email\": \"fbfelipe91@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/users/f24c64ac-8e4a-414e-b550-218103a5ed96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"f24c64ac-8e4a-414e-b550-218103a5ed96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calcular digito único associando a um usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Calcular digito único associando a um usuário\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\": \"12345\",\r\n    \"exp\": 10,\r\n    \"userUid\": \"f24c64ac-8e4a-414e-b550-218103a5ed96\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/one-digit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"one-digit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar lista de digitos unicos por usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Buscar listas de digitos unicos de um usuário\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/api/v1/one-digit/user/515380e5-23ed-4642-af3e-50f3d1aa6bc1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"one-digit",
+						"user",
+						"515380e5-23ed-4642-af3e-50f3d1aa6bc1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir um usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Excluir um usuário\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/api/v1/users/515380e5-23ed-4642-af3e-50f3d1aa6bc1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"515380e5-23ed-4642-af3e-50f3d1aa6bc1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "userUid",
+			"value": "f24c64ac-8e4a-414e-b550-218103a5ed96"
+		}
+	]
+}

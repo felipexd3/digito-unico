@@ -21,7 +21,7 @@ public class OneDigitController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> findOneDigit(@Valid @RequestBody OneDigitDTO oneDigitDTO) {
-        return new ResponseEntity<>(this.oneDigitService.processNumber(oneDigitDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.oneDigitService.processNumber(oneDigitDTO), HttpStatus.OK);
     }
 
     @GetMapping(value = "user/{userUid}", produces = MediaType.APPLICATION_JSON_VALUE)

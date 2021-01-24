@@ -33,7 +33,7 @@ public class OneDigitIntegrationTests {
             .content(objectMapper.writeValueAsString(OneDigitBuilders
                 .builder(String.valueOf(new Random().nextInt(1000000000)),
                     new Random().nextInt(100000)))))
-            .andExpect(MockMvcResultMatchers.status().isCreated());
+            .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test()
