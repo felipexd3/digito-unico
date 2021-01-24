@@ -4,6 +4,9 @@ import com.fb.onedigit.models.OneDigit;
 import com.fb.onedigit.models.User;
 import com.fb.onedigit.models.dtos.OneDigitDTO;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OneDigitDTOBuilder {
     public static OneDigitDTO fromEntity(OneDigit entity) {
         return OneDigitDTO.builder()
@@ -21,5 +24,11 @@ public class OneDigitDTOBuilder {
             .number(dto.getNumber())
             .user(user)
             .build();
+    }
+
+    public static List<OneDigitDTO> fromEntity(List<OneDigit> entity) {
+        return entity.stream()
+            .map(OneDigitDTOBuilder::fromEntity)
+            .collect(Collectors.toList());
     }
 }

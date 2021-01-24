@@ -1,4 +1,4 @@
-package com.fb.onedigit.exceptions.handler;
+package com.fb.onedigit.messages;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

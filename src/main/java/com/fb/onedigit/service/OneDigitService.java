@@ -51,7 +51,7 @@ public class OneDigitService extends BaseCrudService<OneDigit, Long, OneDigitRep
         return digit > 9 ? this.findOneDigit(String.valueOf(digit)) : digit;
     }
 
-    public List<OneDigit> findAllByUser(UUID userUid) {
-        return this.repository.findAllByUser_Uid(userUid);
+    public List<OneDigitDTO> findAllByUser(UUID userUid) {
+        return OneDigitDTOBuilder.fromEntity(this.repository.findAllByUser_Uid(userUid));
     }
 }
